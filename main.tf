@@ -68,3 +68,15 @@ resource "kubectl_manifest" "argocd_application_install" {
   count      = length(data.kubectl_file_documents.argocd_application.documents)
   yaml_body  = element(data.kubectl_file_documents.argocd_application.documents, count.index)
 }
+
+# Monitoring
+data "kubectl_file_documents" "argocd_components" {
+  content = file(var.components)
+}
+
+resource "kubectl_manifest" "components_install" {
+  depends_on = [kubectl_manifest.argocd_install]
+  count      = length(data.kubectl_file_documents.argocd_components.documents)
+  yaml_body  = element(data.kubectl_file_documents.argocd_components.documents, count.index)
+}
+

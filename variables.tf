@@ -12,3 +12,8 @@ variable "applications" {
   description = "Path to applications yaml"
   type        = string
 }
+
+variable "components" {
+  description = "Path to applications yaml"
+  type        = string
+}

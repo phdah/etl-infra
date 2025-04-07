@@ -1,4 +1,4 @@
-argocd=./app/argocd.yaml
+argocd=./app/argocd/argocd.yaml
 argo-workflow=./app/argo-workflow.yaml
 
 help:
