@@ -55,8 +55,8 @@ To stop the services, run
 make stop
 ```
 
-If the UI's don't auto start, you will find Argo CD on https://localhost:8080/, and ~~Argo
-Workflow on https://localhost:2746/~~. All the commands are placed in the `maintenance`
+If the UI's don't auto start, you will find Argo CD on https://localhost:8080/, and Argo
+Workflow on https://localhost:2746/. All the commands are placed in the `maintenance`
 directories as shell scripts.
 
 ## _Our_ Argo Architecture
@@ -65,8 +65,10 @@ Applications are continuously deployed with Argo CD. The applications are deploy
 GitOps structure, where the _actual state_ is compared to the _desired state_ to identify
 the need for updating the k8s resources.
 
-### Rolling back Argo CD
+![Screenshot](images/architecture.png)
 
-Since we have our CD application also automatically synced with git, when we ever make any
-changes, to either an application or Argo CD itself, we can just roll back with git. Use
-your knowledge of git.
+### All other repos
+
+-   [Kafka](https://github.com/phdah/etl-kafka)
+-   [Postgres](https://github.com/phdah/etl-postgres)
+-   [Workflows](https://github.com/phdah/etl-workflows)
