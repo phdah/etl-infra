@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/phdah/etl-infra.git
     targetRevision: HEAD
-    path: app/argocd.yaml
+    path: app/argocd
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -34,7 +34,7 @@ spec:
   source:
     repoURL: https://github.com/phdah/etl-infra.git
     targetRevision: HEAD
-    path: app/argo-workflow.yaml
+    path: app/argo_workflow
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-workflow
