@@ -5,12 +5,18 @@ help:
 	@echo "2.	After install, run start to port forward Argo services"
 	@echo "		To stop, run stop"
 	@echo "3.	To tair down infro, run clean"
+	@echo ""
+	@echo "Note: You might have to start minikube first"
 
 start:
-	source utils/argo_cd_ui.sh
+	./utils/argo_cd_ui.sh
 
 stop:
 	pkill -f "port-forward" || echo "nothing to stop"
+
+minikube-start:
+	minikube start
+	kubectl config use-context minikube
 
 install: $(argocd)
 	# Terraform run
