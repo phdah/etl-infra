@@ -11,6 +11,7 @@ help:
 
 start:
 	./utils/argo_cd_ui.sh
+	./utils/argo_workflow_ui.sh
 
 stop:
 	pkill -f "port-forward" || echo "nothing to stop"

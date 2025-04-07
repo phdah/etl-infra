@@ -22,12 +22,13 @@ spec:
     automated:
       selfHeal: true
       prune: true
+---
 # Argo Workflow setup
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argo-workflow
-  namespace: argo-workflow
+  namespace: argo
 spec:
   project: default
 
@@ -37,7 +38,7 @@ spec:
     path: app/argo_workflow
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo-workflow
+    namespace: argo
 
   syncPolicy:
     syncOptions:
