@@ -10,10 +10,34 @@ spec:
   source:
     repoURL: https://github.com/phdah/etl-infra.git
     targetRevision: HEAD
-    path: app
+    path: app/argocd.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+# Argo Workflow setup
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-workflow
+  namespace: argo-workflow
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/phdah/etl-infra.git
+    targetRevision: HEAD
+    path: app/argo-workflow.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-workflow
 
   syncPolicy:
     syncOptions:
