@@ -1,5 +1,5 @@
 argocd=./app/argocd/argocd.yaml
-argo-workflow=./app/argo-workflow.yaml
+argo-workflow=./app/argo_workflow/argo-workflow.yaml
 
 help:
 	@echo "1.	Run install to setup infra"
@@ -17,20 +17,20 @@ stop:
 	pkill -f "port-forward" || echo "nothing to stop"
 
 minikube-start:
-	minikube start
+	minikube start --driver=docker
 	kubectl config use-context minikube
 
 deps: $(argocd) $(argo-workflow)
 
-install: deps
+install: deps minikube-start
 	# Terraform run
 	terraform init
 	terraform apply -auto-approve
 
 clean:
 	terraform destroy
-	rm -rf terraform.* .terraform* || echo "no terraform files to remove"
-	kind delete cluster --name argo-cd
+	rm -rf *.backup .terraform* || echo "no terraform files to remove"
+	minikube delete --all --purge
 	rm argo-cd-config || echo "no config files to remove"
 
 
@@ -39,4 +39,5 @@ $(argocd):
 
 $(argo-workflow):
 	echo "Get: https://github.com/argoproj/argo-workflows/releases/latest/download/install.yaml"
+	exit 1
 
