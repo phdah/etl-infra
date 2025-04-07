@@ -18,7 +18,6 @@ stop:
 
 minikube-start:
 	minikube start --driver=docker
-	kubectl config use-context minikube
 
 deps: $(argocd) $(argo-workflow)
 
@@ -26,6 +25,7 @@ install: deps minikube-start
 	# Terraform run
 	terraform init
 	terraform apply -auto-approve
+	@echo "-- Run: kubectl config use-context minikube --"
 
 clean:
 	terraform destroy
