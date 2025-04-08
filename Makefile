@@ -25,7 +25,7 @@ install: deps minikube-start
 	# Terraform run
 	terraform init
 	terraform apply -auto-approve
-	@echo "-- Run: kubectl config use-context minikube --"
+	kubectl config use-context minikube
 
 clean:
 	terraform destroy
